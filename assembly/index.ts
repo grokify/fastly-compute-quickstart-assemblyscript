@@ -10,7 +10,7 @@ import { Request, Response, Headers, URL, Fastly } from "@fastly/as-compute";
 
 function main(req: Request): Response {
     let url = new URL(req.url);
-    let logEndpoint = Fastly.getLogEndpoint("AssemblyscriptLog");
+    let logEndpoint = Fastly.getLogEndpoint("QuickstartLog");
 
     // If request is to the `/quickstart` path...
     if (req.method == "POST" && url.pathname == "/quickstart") {
