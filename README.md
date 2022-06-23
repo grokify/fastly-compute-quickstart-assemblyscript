@@ -1,10 +1,19 @@
-# Compute@Edge default starter kit for AssemblyScript
+# Fastly Compute@Edge Quickstart for AssemblyScript
+
+Simple quickstart show casing route filtering, synthetic edge responses, and logging.
+
+For more details about other starter kits for Compute@Edge, see the [Fastly developer hub](https://developer.fastly.com/solutions/starters)
+
+## Deploy Button
 
 [![Deploy to Fastly](https://deploy.edgecompute.app/button)](https://deploy.edgecompute.app/deploy)
 
-Get to know the Fastly Compute@Edge environment with a basic starter that demonstrates routing, simple synthetic responses and code comments that cover common patterns.
+## Deployment via CLI
 
-**For more details about other starter kits for Compute@Edge, see the [Fastly developer hub](https://developer.fastly.com/solutions/starters)**
+```bash
+% fastly compute init
+% fastly compute publish --service-id=<SERVICE_ID> --token=<TOKEN>
+```
 
 ## Features
 
