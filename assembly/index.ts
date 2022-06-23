@@ -17,7 +17,7 @@ function main(req: Request): Response {
         let headers = new Headers();
         headers.set('Content-Type', 'application/json; charset=utf-8');
         logEndpoint.log("assemblyscript quickstart responded with 200");
-        return new Response(String.UTF8.encode('{"foo":"bar","hello":"world","ping":"pong"}\n'), {
+        return new Response(String.UTF8.encode('{"foo":"bar","hello":"world","lang":"assemblyscript","ping":"pong"}\n'), {
             status: 200,
             headers,
             url: null
