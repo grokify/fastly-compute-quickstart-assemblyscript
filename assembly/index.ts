@@ -16,7 +16,7 @@ function main(req: Request): Response {
     if (req.method == "POST" && url.pathname == "/quickstart") {
         let headers = new Headers();
         headers.set('Content-Type', 'application/json; charset=utf-8');
-        logEndpoint.log("quickstart responded with 200");
+        logEndpoint.log("assemblyscript quickstart responded with 200");
         return new Response(String.UTF8.encode('{"foo":"bar","hello":"world","ping":"pong"}\n'), {
             status: 200,
             headers,
@@ -25,7 +25,7 @@ function main(req: Request): Response {
     }
 
     // Catch all other requests and return a 404.
-    logEndpoint.log("quickstart responded with 404");
+    logEndpoint.log("assemblyscript quickstart responded with 404");
     return new Response(String.UTF8.encode("The page you requested could not be found"), {
         status: 404,
         headers: null,
