@@ -1,0 +1,31 @@
+{
+    "author": "oss@fastly.com",
+    "bugs": {
+        "url": "https://github.com/fastly/compute-starter-kit-assemblyscript-default/issues"
+    },
+    "dependencies": {
+        "@fastly/as-compute": "^0.5.0"
+    },
+    "description": "Default package starter kit for AssemblyScript based Compute@Edge projects",
+    "devDependencies": {
+        "assemblyscript": "^0.19.18"
+    },
+    "engines": {
+        "node": "^16"
+    },
+    "homepage": "https://github.com/fastly/compute-starter-kit-assemblyscript-default#readme",
+    "keywords": [],
+    "license": "MIT",
+    "main": "src/index.ts",
+    "name": "Fastly Compute Quickstart for AssemblyScript",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/fastly/compute-starter-kit-assemblyscript-default.git"
+    },
+    "scripts": {
+        "asbuild": "npm run asbuild:untouched \u0026\u0026 npm run asbuild:optimized",
+        "asbuild:optimized": "asc assembly/index.ts --target release",
+        "asbuild:untouched": "asc assembly/index.ts --target debug"
+    },
+    "version": "1.0.0"
+}
