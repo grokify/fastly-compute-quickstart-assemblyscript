@@ -1,5 +1,4 @@
-
-//! Default Compute@Edge template program.
+//! Hello, World! Quickstart for AssemblyScript
 import { Request, Response, Headers, URL, Fastly } from "@fastly/as-compute";
 
 // The entry point for your application.
@@ -10,58 +9,15 @@ import { Request, Response, Headers, URL, Fastly } from "@fastly/as-compute";
 // synthetic responses.
 
 function main(req: Request): Response {
-    // Filter requests that have unexpected methods.
-    if (!["HEAD", "GET"].includes(req.method)) {
-        return new Response(String.UTF8.encode("This method is not allowed"), {
-            status: 405,
-            headers: null,
-            url: null
-        });
-    }
-
     let url = new URL(req.url);
+    let logEndpoint = Fastly.getLogEndpoint("AssemblyscriptLog");
 
-    // If request is to the `/` path...
-    if (url.pathname == "/") {
-        // Below are some common patterns for Compute@Edge services using AssemblyScript.
-        // Head to https://developer.fastly.com/learning/compute/assemblyscript/ to discover more.
-
-        // Create a new request.
-        // let bereq = new Request("http://example.com", {
-        //     method: "GET",
-        //     headers: null,
-        //     body: null
-        // });    
-
-        // Add request headers.
-        // req.headers.set("X-Custom-Header", "Welcome to Compute@Edge!");
-        // req.headers.set(
-        //   "X-Another-Custom-Header",
-        //   "Recommended reading: https://developer.fastly.com/learning/compute"
-        // );
-
-        // Create a cache override.
-        // let cacheOverride = new Fastly.CacheOverride();
-        // cacheOverride.setTTL(60);
-
-        // Forward the request to a backend.
-        // let beresp = Fastly.fetch(req, {
-        //     backend: "backend_name",
-        //     cacheOverride,
-        // }).wait();
-
-        // Remove response headers.
-        // beresp.headers.delete("X-Another-Custom-Header");
-
-        // Log to a Fastly endpoint.
-        // const logger = Fastly.getLogEndpoint("my_endpoint");
-        // logger.log("Hello from the edge!");
-
-        // Send a default synthetic response.
+    // If request is to the `/quickstart` path...
+    if (req.method == "POST" && url.pathname == "/quickstart") {
         let headers = new Headers();
-        headers.set('Content-Type', 'text/html; charset=utf-8');
-
-        return new Response(String.UTF8.encode("<iframe src='https://developer.fastly.com/compute-welcome' style='border:0; position: absolute; top: 0; left: 0; width: 100%; height: 100%'></iframe>\n"), {
+        headers.set('Content-Type', 'application/json; charset=utf-8');
+        logEndpoint.log("quickstart responded with 200");
+        return new Response(String.UTF8.encode('{"foo":"bar","hello":"world","ping":"pong"}\n'), {
             status: 200,
             headers,
             url: null
@@ -69,6 +25,7 @@ function main(req: Request): Response {
     }
 
     // Catch all other requests and return a 404.
+    logEndpoint.log("quickstart responded with 404");
     return new Response(String.UTF8.encode("The page you requested could not be found"), {
         status: 404,
         headers: null,
@@ -83,4 +40,7 @@ let req = Fastly.getClientRequest();
 let resp = main(req);
 
 // Send the response back to the client.
+Fastly.respondWith(resp);
+
+// Send the constructed response, and return
 Fastly.respondWith(resp);
